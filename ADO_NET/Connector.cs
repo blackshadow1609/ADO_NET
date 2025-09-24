@@ -76,7 +76,6 @@ namespace ADO_NET
 
             while (reader.Read())
             {
-                //Console.WriteLine($"{reader[0]}\t{reader[1]}\t{reader[2]}");
                 for (int i = 0; i < reader.FieldCount; i++)
                 {
                     Console.Write(reader[i] + "\t\t");
@@ -107,7 +106,6 @@ namespace ADO_NET
                 AND first_name=@first_name;
                 ";
 
-            //SqlParameter parameter = new SqlParameter();
             SqlCommand command = new SqlCommand(cmd, connection);
             command.Parameters.Add(new SqlParameter("@last_name", System.Data.SqlDbType.NVarChar) { Value = last_name });
             command.Parameters.Add(new SqlParameter("@first_name", System.Data.SqlDbType.NVarChar) { Value = first_name });
