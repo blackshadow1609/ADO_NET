@@ -45,31 +45,110 @@ namespace ADO_NET
             Console.WriteLine(Scalar("SELECT last_name FROM Directors WHERE first_name=N'James'"));
             Console.WriteLine(Scalar("SELECT COUNT(*) FROM Movies")); 
 #endif
-			Console.Write("Введите имя: ");
+            //InsertDirector();
+            InsertMovie();
+        }
+        static void InsertMovie()
+        {
+            Console.Write("Название фильма: ");
+            string movie_name = Console.ReadLine();
+
+            Console.WriteLine("Дата выхода: ");
+            string release_date = Console.ReadLine();
+
+            Console.Write("Режиссер: ");
+            string director = Console.ReadLine();
+
+            Insert
+                (
+                 "Movies",
+                 "movie_id," +
+                 "movie_name, " +
+                 "release_date," +
+                 "director",
+                 $"{Convert.ToInt32(Scalar("SELECT MAX(movie_id) FROM Movies")) + 1}, N'{movie_name}', N'{release_date}', {GetDirectorID(director)}"
+                );
+
+            Select
+                (
+                 "movie_name," +
+                 "release_date," +
+                 "first_name," +
+                 "last_name",
+                 "Movies, Directors",
+                 "director=director_id"
+                );
+        }
+        static int GetDirectorID(string full_name)
+        {
+            return Convert.ToInt32
+                (
+                Scalar
+                    (
+                        $"SELECT director_id FROM Directors WHERE first_name=N'{full_name.Split(' ').First()}' AND last_name=N'{full_name.Split(' ').Last()}'"
+                    )
+                );
+        }
+        static void InsertDirector()
+        {
+            Console.Write("Введите имя: ");
             string first_name = Console.ReadLine();
 
             Console.Write("Введите фамилию: ");
             string last_name = Console.ReadLine();
 
-            string cmd = $"INSERT Directors(director_id, first_name, last_name) VALUES ({Convert.ToInt32(Scalar("SELECT MAX(director_id) FROM Directors"))  + 1}, N'{first_name}', N'{last_name}')";
+            Insert
+                ("Directors",
+                "director_id, first_name, last_name",
+                $"{Convert.ToInt32(Scalar("SELECT MAX(director_id) FROM Directors")) + 1}, N'{first_name}', N'{last_name}'"
+                );
+
+            Select("*", "Directors");
+        }
+        static void Insert(string table, string fields, string values)
+        {
+            string primary_key = Scalar
+                (
+                    $@"SELECT COLUMN_NAME 
+                    FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE 
+                    WHERE OBJECTPROPERTY(OBJECT_ID(CONSTRAINT_SCHEMA+'.'+QUOTENAME(CONSTRAINT_NAME)), 'IsPrimaryKey')=1 
+                    AND    TABLE_NAME='{table}'"
+                ) as string;
+
+            Console.WriteLine("\n===========================================================\n");
+            Console.WriteLine(primary_key);
+            Console.WriteLine("\n===========================================================\n");
+            string[] fields_for_check = fields.Split(',');
+            string[] values_for_check = values.Split(',');
+            string condition = "";
+            for (int i = 1; i < fields_for_check.Length; i++)
+            {
+                condition += $" {fields_for_check[i]}={values_for_check[i]} AND";
+            }
+
+            int index_of_last_space = condition.LastIndexOf(' ');
+            Console.WriteLine($"Condition Length:{condition.Length}");
+            Console.WriteLine($"Last space index:{index_of_last_space}");
+
+            condition = condition.Remove(condition.LastIndexOf(' '), 4);
+
+            string cmd = $"IF NOT EXISTS(SELECT {primary_key} FROM {table} WHERE {condition})BEGIN INSERT {table} ({fields}) VALUES ({values}); END";
 
             SqlCommand command = new SqlCommand(cmd, connection);
 
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
-
-            Select("*", "Directors");
         }
 
 
-        static void Select(string fields, string tables, string condition = "")
+        static void Select(string fields, string table, string condition = "")
         {
             //2) Открывает соединение:
             connection.Open();
 
             //3) Создаем 'SqlCommand':
-            string cmd = $"SELECT {fields} FROM {tables}";
+            string cmd = $"SELECT {fields} FROM {table}";
             if (condition != "") cmd += $" WHERE {condition}";
             cmd += ";";
             SqlCommand command = new SqlCommand(cmd, connection);
