@@ -8,17 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 //ADO.NET:
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace ADO_NET
 {
     internal class Program
     {
-        static string connectionString = "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = Movies; Integrated Security = True";   //В моём случае работает только так
+        static string connectionString = "";   
         static SqlConnection connection;
         static void Main(string[] args)
         {
-            //1) Создаем подключение к Базе данных на Сервере:
+            //0) Достаем строку подключения из App.config:
+            connectionString = ConfigurationManager.ConnectionStrings["Movies"].ConnectionString;
 
+            //1) Создаем подключение к Базе данных на Сервере:
             Console.WriteLine(connectionString);
             connection = new SqlConnection(connectionString); //Инициализация статического поля
             //После того как подключение создано, оно не является открытым,
@@ -185,3 +188,5 @@ namespace ADO_NET
         }
     }
 }
+
+//"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Movies;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
