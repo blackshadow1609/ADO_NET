@@ -1,7 +1,4 @@
-﻿//ADO_NET
-//ADO(ActiveX Data Object)
-//#define SCALAR_CHEK
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,48 +17,73 @@ namespace ADO_NET
             //1) Создаем подключение к Базе данных на Сервере:
 
             Console.WriteLine(connectionString);
-            connection = new SqlConnection(connectionString); //Инициализация статического поля
-            //После того как подключение создано, оно не является открытым,
-            //то есть подключение всегда открывается вручную при необходимости.
-            //Select("SELECT * FROM Directors");
-            //Select("SELECT * FROM Movies");
+            connection = new SqlConnection(connectionString);
+
             Select("*", "Directors");
             Select("movie_name, release_date, first_name+last_name AS director", "Movies, Directors", "director=director_id");
 
-#if SCALAR_CHEK
-            connection.Open();
-            string cmd = "SELECT COUNT(*) FROM Directors";
-            SqlCommand command = new SqlCommand(cmd, connection);
-            Console.WriteLine($"Количество режиссеров:\t{command.ExecuteScalar()}");
 
-            command.CommandText = "SELECT COUNT(*) FROM Movies";
-            Console.WriteLine($"Количество фильмов:\t{command.ExecuteScalar()}");
-
-            command.CommandText = "SELECT last_name FROM Directors WHERE first_name=N'James'";
-            Console.WriteLine(command.ExecuteScalar());
-
-            connection.Close();
-
-            Console.WriteLine(Scalar("SELECT last_name FROM Directors WHERE first_name=N'James'"));
-            Console.WriteLine(Scalar("SELECT COUNT(*) FROM Movies")); 
-#endif
-			Console.Write("Введите имя: ");
+            Console.Write("Введите имя: ");
             string first_name = Console.ReadLine();
 
             Console.Write("Введите фамилию: ");
             string last_name = Console.ReadLine();
 
-            string cmd = $"INSERT Directors(director_id, first_name, last_name) VALUES ({Convert.ToInt32(Scalar("SELECT MAX(director_id) FROM Directors"))  + 1}, N'{first_name}', N'{last_name}')";
+            
+            Insert("Directors", "director_id, first_name, last_name",
+                   $"{Convert.ToInt32(Scalar("SELECT MAX(director_id) FROM Directors")) + 1}, N'{first_name}', N'{last_name}'");
 
+            Select("*", "Directors");
+
+            
+            Console.WriteLine("\n=== Параметризованный запрос ===");
+            ParametrizedSelect("Directors", "first_name", "James"); 
+        }
+
+        
+        static void Insert(string table, string columns, string values)
+        {
+            string cmd = $"INSERT {table}({columns}) VALUES ({values})";
             SqlCommand command = new SqlCommand(cmd, connection);
 
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
-
-            Select("*", "Directors");
         }
 
+        
+        static void ParametrizedSelect(string table, string conditionField, string conditionValue)
+        {
+            connection.Open();
+
+            
+            string cmd = $"SELECT * FROM {table} WHERE {conditionField} = @value";
+            SqlCommand command = new SqlCommand(cmd, connection);
+
+           
+            command.Parameters.AddWithValue("@value", conditionValue);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+           
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                Console.Write(reader.GetName(i) + "\t");
+            }
+            Console.WriteLine();
+
+            while (reader.Read())
+            {
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    Console.Write(reader[i] + "\t\t");
+                }
+                Console.WriteLine();
+            }
+            reader.Close();
+
+            connection.Close();
+        }
 
         static void Select(string fields, string tables, string condition = "")
         {
@@ -84,7 +106,7 @@ namespace ADO_NET
 
             while (reader.Read())
             {
-                //Console.WriteLine($"{reader[0]}\t{reader[1]}\t{reader[2]}");
+
                 for (int i = 0; i < reader.FieldCount; i++)
                 {
                     Console.Write(reader[i] + "\t\t");
