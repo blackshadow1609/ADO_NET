@@ -56,11 +56,15 @@ namespace ADO_NET
             //InsertDirector();
             //InsertMovie();
 
-            MovieConnector movie_connector = new MovieConnector(ConfigurationManager.ConnectionStrings["Movies"].ConnectionString);
-            movie_connector.SelectDirectors();
-            movie_connector.SelectMovies();
+            //MovieConnector movie_connector = new MovieConnector(ConfigurationManager.ConnectionStrings["Movies"].ConnectionString);
+            //movie_connector.SelectDirectors();
+            //movie_connector.SelectMovies();
             //movie_connector.InsertDirector();
-            movie_connector.InsertMovie();
+            // movie_connector.InsertMovie();
+            //movie_connector.Select("*", "Movies, Directors", "director=director_id; DROP TABLE Actors");
+
+            Connector connector = new Connector(ConfigurationManager.ConnectionStrings["Movies"].ConnectionString);
+            connector.SelectWithParameters("James", "Cameron");
         }
     }
 }

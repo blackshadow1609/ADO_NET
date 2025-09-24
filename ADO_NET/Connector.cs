@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+
 
 namespace ADO_NET
 {
@@ -95,6 +95,38 @@ namespace ADO_NET
             object obj = command.ExecuteScalar();
             connection.Close();
             return obj;
+        }
+        public void SelectWithParameters(string first_name, string last_name)
+        {
+            string cmd = 
+                @"
+                SELECT movie_name, release_date, last_name, first_name 
+                FROM Movies, Directors 
+                WHERE director=director_id 
+                AND last_name=@last_name 
+                AND first_name=@first_name;
+                ";
+
+            //SqlParameter parameter = new SqlParameter();
+            SqlCommand command = new SqlCommand(cmd, connection);
+            command.Parameters.Add(new SqlParameter("@last_name", System.Data.SqlDbType.NVarChar) { Value = last_name });
+            command.Parameters.Add(new SqlParameter("@first_name", System.Data.SqlDbType.NVarChar) { Value = first_name });
+            //command.Parameters.Add(new SqlParameter("@last_name", System.Data.SqlDbType.NVarChar).Value = last_name);
+            //command.Parameters.Add(new SqlParameter("@first_name", System.Data.SqlDbType.NVarChar).Value = first_name);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    Console.Write(reader.GetName(i) + "\t");
+					Console.WriteLine();
+                }
+            while (reader.Read())
+            {
+                for (int i = 0; i < reader.FieldCount; i++)
+                    Console.WriteLine(reader[i] + "\t");
+				    Console.WriteLine();
+            }
+            connection.Close();
         }
     }
 }
