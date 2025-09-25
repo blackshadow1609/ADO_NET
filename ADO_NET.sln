@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36429.23 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11018.127 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO_NET", "ADO_NET\ADO_NET.csproj", "{42C8B2E5-1639-4451-ADEC-DAEA587D02C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academy", "Academy\Academy.csproj", "{BBF5F204-F7F0-4BDF-84D4-C2B1ED82582C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{42C8B2E5-1639-4451-ADEC-DAEA587D02C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42C8B2E5-1639-4451-ADEC-DAEA587D02C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42C8B2E5-1639-4451-ADEC-DAEA587D02C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF5F204-F7F0-4BDF-84D4-C2B1ED82582C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF5F204-F7F0-4BDF-84D4-C2B1ED82582C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF5F204-F7F0-4BDF-84D4-C2B1ED82582C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF5F204-F7F0-4BDF-84D4-C2B1ED82582C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
