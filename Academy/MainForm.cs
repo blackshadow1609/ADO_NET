@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace Academy
 {
@@ -19,6 +20,7 @@ namespace Academy
         public MainForm()
         {
             InitializeComponent();
+            AllocConsole();
             connection = new SqlConnection(connectionString);
             //LoadDirections();
             //LoadGroups();
@@ -144,8 +146,11 @@ namespace Academy
                 );
         }
 
-		//Disciplines-----------------------------------------------------
-		//Students--------------------------------------------------------
-		//Teachers--------------------------------------------------------
+        //Disciplines-----------------------------------------------------
+        //Students--------------------------------------------------------
+        //Teachers--------------------------------------------------------
+
+        [DllImport("kernel32.dll")]
+        static extern void AllocConsole();
 	}
 }
