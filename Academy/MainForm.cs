@@ -155,7 +155,6 @@ namespace Academy
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                //comboBoxGroupsDirection.Items.Add(reader[1]);
                 dictionary.Add(reader[1].ToString(), Convert.ToInt32 (reader[0]));
             }
             reader.Close();
@@ -179,16 +178,16 @@ namespace Academy
         {
             DataGridView currentDataGridView = null;
 
-            //Определяем активную вкладку и соответствующий DataGridView по индексу
-            if (tabControl.SelectedIndex == 0) // Первая вкладка - Directions
+            
+            if (tabControl.SelectedIndex == 0) 
                 currentDataGridView = dataGridViewDirections;
-            else if (tabControl.SelectedIndex == 1) // Вторая вкладка - Groups
+            else if (tabControl.SelectedIndex == 1) 
                 currentDataGridView = dataGridViewGroups;
-            else if (tabControl.SelectedIndex == 2) // Третья вкладка - Disciplines
+            else if (tabControl.SelectedIndex == 2) 
                 currentDataGridView = dataGridViewDisciplines;
-            else if (tabControl.SelectedIndex == 3) // Четвертая вкладка - Students
+            else if (tabControl.SelectedIndex == 3) 
                 currentDataGridView = dataGridViewStudents;
-            else if (tabControl.SelectedIndex == 4) // Пятая вкладка - Teachers
+            else if (tabControl.SelectedIndex == 4) 
                 currentDataGridView = dataGridViewTeachers;
 
             if (currentDataGridView != null && currentDataGridView.DataSource is DataTable dataTable)
@@ -197,7 +196,7 @@ namespace Academy
             }
             else if (currentDataGridView != null && currentDataGridView.DataSource != null)
             {
-                // Альтернативный способ подсчета записей
+                
                 labelRecordsCount.Text = $"Количество записей: {currentDataGridView.Rows.Count}";
             }
             else
@@ -205,13 +204,13 @@ namespace Academy
                 labelRecordsCount.Text = "Количество записей: 0";
             }
         }
-        //Обработчик события смены вкладки
+        //Обработчик-----------------------------------------------------
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateRecordsCount();
         }
 
-        //Обработчик события загрузки данных в DataGridView
+        //Обработчик-----------------------------------------------------
         private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             UpdateRecordsCount();
