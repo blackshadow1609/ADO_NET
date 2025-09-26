@@ -20,9 +20,14 @@ namespace Academy
         {
             InitializeComponent();
             connection = new SqlConnection(connectionString);
-            //LoadDirections();
-            //LoadGroups();
-            
+
+            dataGridViewDirections.DataBindingComplete += dataGridView_DataBindingComplete;
+            dataGridViewGroups.DataBindingComplete += dataGridView_DataBindingComplete;
+            dataGridViewDisciplines.DataBindingComplete += dataGridView_DataBindingComplete;
+            dataGridViewStudents.DataBindingComplete += dataGridView_DataBindingComplete;
+            dataGridViewTeachers.DataBindingComplete += dataGridView_DataBindingComplete;
+            tabControl.SelectedIndexChanged += tabControl_SelectedIndexChanged;
+
             dataGridViewDirections.DataSource = Select("*", "Directions");
             dataGridViewGroups.DataSource = Select
                 (
@@ -170,7 +175,47 @@ namespace Academy
                 condition
                 );
         }
+        private void UpdateRecordsCount()
+        {
+            DataGridView currentDataGridView = null;
 
-        
+            //Определяем активную вкладку и соответствующий DataGridView по индексу
+            if (tabControl.SelectedIndex == 0) // Первая вкладка - Directions
+                currentDataGridView = dataGridViewDirections;
+            else if (tabControl.SelectedIndex == 1) // Вторая вкладка - Groups
+                currentDataGridView = dataGridViewGroups;
+            else if (tabControl.SelectedIndex == 2) // Третья вкладка - Disciplines
+                currentDataGridView = dataGridViewDisciplines;
+            else if (tabControl.SelectedIndex == 3) // Четвертая вкладка - Students
+                currentDataGridView = dataGridViewStudents;
+            else if (tabControl.SelectedIndex == 4) // Пятая вкладка - Teachers
+                currentDataGridView = dataGridViewTeachers;
+
+            if (currentDataGridView != null && currentDataGridView.DataSource is DataTable dataTable)
+            {
+                labelRecordsCount.Text = $"Количество записей: {dataTable.Rows.Count}";
+            }
+            else if (currentDataGridView != null && currentDataGridView.DataSource != null)
+            {
+                // Альтернативный способ подсчета записей
+                labelRecordsCount.Text = $"Количество записей: {currentDataGridView.Rows.Count}";
+            }
+            else
+            {
+                labelRecordsCount.Text = "Количество записей: 0";
+            }
+        }
+        //Обработчик события смены вкладки
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateRecordsCount();
+        }
+
+        //Обработчик события загрузки данных в DataGridView
+        private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            UpdateRecordsCount();
+        }
+
     }
 }

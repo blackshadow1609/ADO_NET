@@ -42,6 +42,7 @@
             this.dataGridViewDisciplines = new System.Windows.Forms.DataGridView();
             this.dataGridViewStudents = new System.Windows.Forms.DataGridView();
             this.dataGridViewTeachers = new System.Windows.Forms.DataGridView();
+            this.labelRecordsCount = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
             this.tabPageGroups.SuspendLayout();
@@ -211,11 +212,21 @@
             this.dataGridViewTeachers.Size = new System.Drawing.Size(792, 399);
             this.dataGridViewTeachers.TabIndex = 0;
             // 
+            // labelRecordsCount
+            // 
+            this.labelRecordsCount.AutoSize = true;
+            this.labelRecordsCount.Location = new System.Drawing.Point(3, 430);
+            this.labelRecordsCount.Name = "labelRecordsCount";
+            this.labelRecordsCount.Size = new System.Drawing.Size(44, 16);
+            this.labelRecordsCount.TabIndex = 2;
+            this.labelRecordsCount.Text = "label1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelRecordsCount);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.statusStrip);
             this.Name = "MainForm";
@@ -253,6 +264,7 @@
 		private System.Windows.Forms.DataGridView dataGridViewDisciplines;
 		private System.Windows.Forms.DataGridView dataGridViewStudents;
 		private System.Windows.Forms.DataGridView dataGridViewTeachers;
+		private System.Windows.Forms.Label labelRecordsCount;
 	}
 }
 
