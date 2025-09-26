@@ -24,6 +24,14 @@ namespace Academy
             connection = new SqlConnection(connectionString);
             //LoadDirections();
             //LoadGroups();
+            Console.WriteLine(this.Name);
+			Console.WriteLine(tabControl.TabCount);
+            for(int i = 0; i < tabControl.TabCount; i++)
+            {
+                string tableName = tabControl.TabPages[i].Name.Remove(0, "tabPage".Length);
+                Console.WriteLine(tableName);
+
+            }
             dataGridViewDirections.DataSource = Select("*", "Directions");
             dataGridViewGroups.DataSource = Select
                 (
