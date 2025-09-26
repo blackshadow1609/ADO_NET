@@ -158,11 +158,13 @@
             // 
             // comboBoxGroupsDirection
             // 
+            this.comboBoxGroupsDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGroupsDirection.FormattingEnabled = true;
             this.comboBoxGroupsDirection.Location = new System.Drawing.Point(179, 15);
             this.comboBoxGroupsDirection.Name = "comboBoxGroupsDirection";
             this.comboBoxGroupsDirection.Size = new System.Drawing.Size(286, 24);
             this.comboBoxGroupsDirection.TabIndex = 2;
+            this.comboBoxGroupsDirection.SelectedIndexChanged += new System.EventHandler(this.comboBoxGroupsDirection_SelectedIndexChanged_1);
             // 
             // MainForm
             // 
