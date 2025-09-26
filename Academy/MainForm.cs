@@ -22,6 +22,7 @@ namespace Academy
             connection = new SqlConnection(connectionString);
             //LoadDirections();
             //LoadGroups();
+            
             dataGridViewDirections.DataSource = Select("*", "Directions");
             dataGridViewGroups.DataSource = Select
                 (
@@ -30,6 +31,10 @@ namespace Academy
             d_groupDirection = LoadDataToComboBox("*", "Directions");
             comboBoxGroupsDirection.Items.AddRange(d_groupDirection.Keys.ToArray());
             comboBoxGroupsDirection.SelectedIndex = 0;
+
+            LoadDisciplines();
+            LoadStudents();
+            LoadTeachers();
         }
         DataTable Select(string fields, string tables, string condition = "")
         {
@@ -112,6 +117,28 @@ namespace Academy
             connection.Close();
             dataGridViewGroups.DataSource = table;
         }
+        //Disciplines-----------------------------------------------------
+        void LoadDisciplines()
+        {
+            dataGridViewDisciplines.DataSource = Select("*", "Disciplines");
+        }
+
+        //Students--------------------------------------------------------
+        void LoadStudents()
+        {
+            dataGridViewStudents.DataSource = Select
+                (
+                "stud_id, last_name, first_name, middle_name, birth_date, email, phone, group_name",
+                "Students, Groups",
+                "[group]=group_id"
+                );
+        }
+
+        //Teachers--------------------------------------------------------
+        void LoadTeachers()
+        {
+            dataGridViewTeachers.DataSource = Select("*", "Teachers");
+        }
         //ComboBoxGroups---------------------------------------------------
         Dictionary<string, int> LoadDataToComboBox(string fields, string tables)
         {
@@ -144,8 +171,6 @@ namespace Academy
                 );
         }
 
-		//Disciplines-----------------------------------------------------
-		//Students--------------------------------------------------------
-		//Teachers--------------------------------------------------------
-	}
+        
+    }
 }
