@@ -181,7 +181,7 @@ namespace Academy
             
             if (tabControl.SelectedIndex == 0) 
                 currentDataGridView = dataGridViewDirections;
-            else if (tabControl.SelectedIndex == 1) 
+            else if (tabControl.SelectedIndex == 1)
                 currentDataGridView = dataGridViewGroups;
             else if (tabControl.SelectedIndex == 2) 
                 currentDataGridView = dataGridViewDisciplines;
