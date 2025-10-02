@@ -29,8 +29,14 @@
 		private void InitializeComponent()
 		{
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageStudents = new System.Windows.Forms.TabPage();
+            this.buttonAddStudent = new System.Windows.Forms.Button();
+            this.comboBoxStudentsDirection = new System.Windows.Forms.ComboBox();
+            this.labelStudentsDirection = new System.Windows.Forms.Label();
+            this.labelStudentsGroup = new System.Windows.Forms.Label();
+            this.comboBoxStudentsGroup = new System.Windows.Forms.ComboBox();
             this.dataGridViewStudents = new System.Windows.Forms.DataGridView();
             this.tabPageGroups = new System.Windows.Forms.TabPage();
             this.comboBoxGroupsDirection = new System.Windows.Forms.ComboBox();
@@ -42,12 +48,6 @@
             this.dataGridViewDisciplines = new System.Windows.Forms.DataGridView();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
             this.dataGridViewTeachers = new System.Windows.Forms.DataGridView();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.comboBoxStudentsGroup = new System.Windows.Forms.ComboBox();
-            this.labelStudentsGroup = new System.Windows.Forms.Label();
-            this.labelStudentsDirection = new System.Windows.Forms.Label();
-            this.comboBoxStudentsDirection = new System.Windows.Forms.ComboBox();
-            this.buttonAddStudent = new System.Windows.Forms.Button();
             this.statusStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
@@ -72,6 +72,12 @@
             this.statusStrip.Size = new System.Drawing.Size(800, 26);
             this.statusStrip.TabIndex = 0;
             this.statusStrip.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(143, 20);
+            this.toolStripStatusLabel.Text = "toolStripStatusLabel";
             // 
             // tabControl
             // 
@@ -104,9 +110,57 @@
             this.tabPageStudents.Text = "Students";
             this.tabPageStudents.UseVisualStyleBackColor = true;
             // 
+            // buttonAddStudent
+            // 
+            this.buttonAddStudent.Location = new System.Drawing.Point(681, 13);
+            this.buttonAddStudent.Name = "buttonAddStudent";
+            this.buttonAddStudent.Size = new System.Drawing.Size(103, 23);
+            this.buttonAddStudent.TabIndex = 2;
+            this.buttonAddStudent.Text = "Добавить";
+            this.buttonAddStudent.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxStudentsDirection
+            // 
+            this.comboBoxStudentsDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStudentsDirection.FormattingEnabled = true;
+            this.comboBoxStudentsDirection.Location = new System.Drawing.Point(406, 12);
+            this.comboBoxStudentsDirection.Name = "comboBoxStudentsDirection";
+            this.comboBoxStudentsDirection.Size = new System.Drawing.Size(252, 24);
+            this.comboBoxStudentsDirection.TabIndex = 4;
+            this.comboBoxStudentsDirection.SelectedIndexChanged += new System.EventHandler(this.comboBoxStudentsDirection_SelectedIndexChanged);
+            // 
+            // labelStudentsDirection
+            // 
+            this.labelStudentsDirection.AutoSize = true;
+            this.labelStudentsDirection.Location = new System.Drawing.Point(233, 16);
+            this.labelStudentsDirection.Name = "labelStudentsDirection";
+            this.labelStudentsDirection.Size = new System.Drawing.Size(166, 16);
+            this.labelStudentsDirection.TabIndex = 3;
+            this.labelStudentsDirection.Text = "Направление обучения:";
+            // 
+            // labelStudentsGroup
+            // 
+            this.labelStudentsGroup.AutoSize = true;
+            this.labelStudentsGroup.Location = new System.Drawing.Point(8, 16);
+            this.labelStudentsGroup.Name = "labelStudentsGroup";
+            this.labelStudentsGroup.Size = new System.Drawing.Size(57, 16);
+            this.labelStudentsGroup.TabIndex = 2;
+            this.labelStudentsGroup.Text = "Группа:";
+            // 
+            // comboBoxStudentsGroup
+            // 
+            this.comboBoxStudentsGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStudentsGroup.FormattingEnabled = true;
+            this.comboBoxStudentsGroup.Location = new System.Drawing.Point(71, 12);
+            this.comboBoxStudentsGroup.Name = "comboBoxStudentsGroup";
+            this.comboBoxStudentsGroup.Size = new System.Drawing.Size(149, 24);
+            this.comboBoxStudentsGroup.TabIndex = 1;
+            this.comboBoxStudentsGroup.SelectedIndexChanged += new System.EventHandler(this.comboBoxStudentsGroup_SelectedIndexChanged);
+            // 
             // dataGridViewStudents
             // 
-            this.dataGridViewStudents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridViewStudents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewStudents.Location = new System.Drawing.Point(3, 47);
@@ -230,59 +284,6 @@
             this.dataGridViewTeachers.RowTemplate.Height = 24;
             this.dataGridViewTeachers.Size = new System.Drawing.Size(786, 345);
             this.dataGridViewTeachers.TabIndex = 0;
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(143, 20);
-            this.toolStripStatusLabel.Text = "toolStripStatusLabel";
-            // 
-            // comboBoxStudentsGroup
-            // 
-            this.comboBoxStudentsGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxStudentsGroup.FormattingEnabled = true;
-            this.comboBoxStudentsGroup.Location = new System.Drawing.Point(71, 12);
-            this.comboBoxStudentsGroup.Name = "comboBoxStudentsGroup";
-            this.comboBoxStudentsGroup.Size = new System.Drawing.Size(149, 24);
-            this.comboBoxStudentsGroup.TabIndex = 1;
-            this.comboBoxStudentsGroup.SelectedIndexChanged += new System.EventHandler(this.comboBoxStudentsGroup_SelectedIndexChanged);
-            // 
-            // labelStudentsGroup
-            // 
-            this.labelStudentsGroup.AutoSize = true;
-            this.labelStudentsGroup.Location = new System.Drawing.Point(8, 16);
-            this.labelStudentsGroup.Name = "labelStudentsGroup";
-            this.labelStudentsGroup.Size = new System.Drawing.Size(57, 16);
-            this.labelStudentsGroup.TabIndex = 2;
-            this.labelStudentsGroup.Text = "Группа:";
-            // 
-            // labelStudentsDirection
-            // 
-            this.labelStudentsDirection.AutoSize = true;
-            this.labelStudentsDirection.Location = new System.Drawing.Point(233, 16);
-            this.labelStudentsDirection.Name = "labelStudentsDirection";
-            this.labelStudentsDirection.Size = new System.Drawing.Size(166, 16);
-            this.labelStudentsDirection.TabIndex = 3;
-            this.labelStudentsDirection.Text = "Направление обучения:";
-            // 
-            // comboBoxStudentsDirection
-            // 
-            this.comboBoxStudentsDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxStudentsDirection.FormattingEnabled = true;
-            this.comboBoxStudentsDirection.Location = new System.Drawing.Point(406, 12);
-            this.comboBoxStudentsDirection.Name = "comboBoxStudentsDirection";
-            this.comboBoxStudentsDirection.Size = new System.Drawing.Size(252, 24);
-            this.comboBoxStudentsDirection.TabIndex = 4;
-            this.comboBoxStudentsDirection.SelectedIndexChanged += new System.EventHandler(this.comboBoxStudentsDirection_SelectedIndexChanged);
-            // 
-            // buttonAddStudent
-            // 
-            this.buttonAddStudent.Location = new System.Drawing.Point(681, 13);
-            this.buttonAddStudent.Name = "buttonAddStudent";
-            this.buttonAddStudent.Size = new System.Drawing.Size(103, 23);
-            this.buttonAddStudent.TabIndex = 2;
-            this.buttonAddStudent.Text = "Добавить";
-            this.buttonAddStudent.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

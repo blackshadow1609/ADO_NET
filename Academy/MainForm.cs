@@ -79,7 +79,6 @@ namespace Academy
             string tableName = tabControl.TabPages[i].Name.Remove(0, "tabPage".Length);
             DataGridView dataGridView = this.Controls.Find($"dataGridView{tableName}", true)[0] as DataGridView;
             dataGridView.DataSource = Select(queries[i].Fields, queries[i].Tables, queries[i].Condition);
-            //toolStripStatusLabel.Text = $"{statusBarMessages[i]}: {dataGridView.RowCount - 1}";
         }
         void FillStatusBar(int i)
         {
@@ -202,27 +201,6 @@ namespace Academy
                 +(string.IsNullOrWhiteSpace(condition_direction) ? "" : $" AND {condition_direction}")
             );
 
-
-            //private void comboBoxStudentsGroup_SelectedIndexChanged(object sender, EventArgs e)
-            //{
-            //    string condition = queries[0].Condition;
-
-            //    if (comboBoxStudentsDirection.SelectedItem.ToString() != "Все")
-            //    {
-            //        condition += $" AND direction={d_groupDirection[comboBoxStudentsDirection.SelectedItem.ToString()]}";
-            //    }
-
-            //    if (comboBoxStudentsGroup.SelectedItem.ToString() != "Все")
-            //    {
-            //        condition += $" AND [group]={d_studentsGroup[comboBoxStudentsGroup.SelectedItem.ToString()]}";
-            //    }
-
-            //    dataGridViewStudents.DataSource = Select(
-            //        queries[0].Fields,
-            //        queries[0].Tables,
-            //        condition
-            //    );
-            //}
         }
     }
 }
