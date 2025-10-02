@@ -108,7 +108,7 @@ namespace Academy
             return table;
         }
 
-        //ComboBoxGroups-------------------------------------------------
+        //ComboBoxGroups---------------------------------------------------
         Dictionary<string, int> LoadDataToDictionary(string fields, string tables, string condition = "")
         {
             Dictionary<string, int> dictionary = new Dictionary<string, int>();
