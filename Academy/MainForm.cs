@@ -32,7 +32,7 @@ namespace Academy
             ),
             new Query
             (
-                "group_id,group_name,direction_name",
+                "group_id,group_name,learning_days,start_time,direction_name",
                 "Groups, Directions",
                 "direction=direction_id"
             ),
