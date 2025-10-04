@@ -68,9 +68,9 @@ namespace Academy
 
             tabControl.SelectedIndex = 0;
 
-            for(int i = 0; i < tabControl.TabCount; i++)
+            for (int i = 0; i < tabControl.TabCount; i++)
             {
-                (this.Controls.Find($"dataGridView{tabControl.TabPages[i].Name.Remove(0, "tabPage".Length)}", true)[0] as DataGridView).RowsAdded 
+                (this.Controls.Find($"dataGridView{tabControl.TabPages[i].Name.Remove(0, "tabPage".Length)}", true)[0] as DataGridView).RowsAdded
                     += new DataGridViewRowsAddedEventHandler(this.dataGridViewChanged);
             }
         }
@@ -116,7 +116,7 @@ namespace Academy
             string cmd = $"SELECT {fields} FROM {tables}";
             if (!string.IsNullOrWhiteSpace(condition))
                 cmd += $" WHERE {condition}";
-            cmd += ";" ;
+            cmd += ";";
             SqlCommand command = new SqlCommand(cmd, connection);
             connection.Open();
             SqlDataReader reader = command.ExecuteReader();
@@ -171,36 +171,43 @@ namespace Academy
             comboBoxStudentsGroup.Items.Clear();
             comboBoxStudentsGroup.Items.AddRange(LoadDataToDictionary("*", "Groups", condition).Keys.ToArray());
 
-            //Обновление----------студиков-------------------------------------------------------
-            string studentsCondition = queries[0].Condition;
-            if (comboBoxStudentsDirection.SelectedItem.ToString() != "Все")
-            {
-                studentsCondition += $" AND direction={d_groupDirection[comboBoxStudentsDirection.SelectedItem.ToString()]}";
-            }
-
-            dataGridViewStudents.DataSource = Select(
-                queries[0].Fields,
-                queries[0].Tables,
-                studentsCondition
-            );
+            dataGridViewStudents.DataSource = Select
+                (
+                    queries[0].Fields,
+                    queries[0].Tables,
+                    queries[0].Condition + (string.IsNullOrEmpty(condition) ? "" : $" AND {condition}")
+                );
         }
 
         private void comboBoxStudentsGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             string condition_group =
                 comboBoxStudentsGroup.SelectedItem.ToString() == "Bce" ? "" :
                 $"[group]={d_studentsGroup[comboBoxStudentsGroup.SelectedItem.ToString()]}";
-            string condition_direction = comboBoxStudentsDirection.SelectedItem.ToString() == "Bce" ? "" :
+
+            string condition_direction = 
+                comboBoxStudentsDirection.SelectedItem.ToString() == "Bce" ? "" :
                 $"direction ={d_groupDirection[comboBoxStudentsDirection.SelectedItem.ToString()]}";
+
             dataGridViewStudents.DataSource = Select
             (
                 queries[0].Fields,
                 queries[0].Tables,
                 queries[0].Condition
                 + (string.IsNullOrWhiteSpace(condition_group) ? "" : $" AND {condition_group}")
-                +(string.IsNullOrWhiteSpace(condition_direction) ? "" : $" AND {condition_direction}")
+                + (string.IsNullOrWhiteSpace(condition_direction) ? "" : $" AND {condition_direction}")
             );
 
         }
     }
 }
+
+
+
+//Обновление----------студиков-------------------------------------------------------
+//string studentsCondition = queries[0].Condition;
+//if (comboBoxStudentsDirection.SelectedItem.ToString() != "Все")
+//{
+//    studentsCondition += $" AND direction={d_groupDirection[comboBoxStudentsDirection.SelectedItem.ToString()]}";
+//}
