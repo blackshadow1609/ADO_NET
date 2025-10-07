@@ -33,7 +33,7 @@ namespace Academy
             new Query
             (
                 "group_id,group_name,learning_days,start_time,direction_name",
-                "Groups, Directions",
+                "Groups,Directions",
                 "direction=direction_id"
             ),
             new Query("*", "Directions"),
@@ -74,11 +74,14 @@ namespace Academy
                     += new DataGridViewRowsAddedEventHandler(this.dataGridViewChanged);
             }
         }
+        
         void LoadTab(int i)
         {
             string tableName = tabControl.TabPages[i].Name.Remove(0, "tabPage".Length);
             DataGridView dataGridView = this.Controls.Find($"dataGridView{tableName}", true)[0] as DataGridView;
             dataGridView.DataSource = Select(queries[i].Fields, queries[i].Tables, queries[i].Condition);
+
+            if (i == 1) ConvertLearningDays();
         }
         void FillStatusBar(int i)
         {
@@ -105,7 +108,17 @@ namespace Academy
             }
             reader.Close();
             connection.Close();
+
             return table;
+        }
+
+        void ConvertLearningDays()
+        {
+            for (int i = 0; i < dataGridViewGroups.RowCount; i++)
+            {
+                dataGridViewGroups.Rows[i].Cells["learning_days"].Value =
+                    new Week(Convert.ToByte(dataGridViewGroups.Rows[i].Cells["learning_days"].Value));
+            }
         }
 
         //ComboBoxGroups-------------------------------------------------
@@ -183,11 +196,11 @@ namespace Academy
         {
 
             string condition_group =
-                comboBoxStudentsGroup.SelectedItem.ToString() == "Bce" ? "" :
+                comboBoxStudentsGroup.SelectedItem.ToString() == "Все" ? "" :
                 $"[group]={d_studentsGroup[comboBoxStudentsGroup.SelectedItem.ToString()]}";
 
-            string condition_direction = 
-                comboBoxStudentsDirection.SelectedItem.ToString() == "Bce" ? "" :
+            string condition_direction =
+                comboBoxStudentsDirection.SelectedItem.ToString() == "Все" ? "" :
                 $"direction ={d_groupDirection[comboBoxStudentsDirection.SelectedItem.ToString()]}";
 
             dataGridViewStudents.DataSource = Select
@@ -202,12 +215,3 @@ namespace Academy
         }
     }
 }
-
-
-
-//Обновление----------студиков-------------------------------------------------------
-//string studentsCondition = queries[0].Condition;
-//if (comboBoxStudentsDirection.SelectedItem.ToString() != "Все")
-//{
-//    studentsCondition += $" AND direction={d_groupDirection[comboBoxStudentsDirection.SelectedItem.ToString()]}";
-//}

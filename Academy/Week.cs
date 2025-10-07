@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Academy
 {
+
     internal class Week
     {
         static readonly string[] DayNames = { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" };
@@ -17,10 +18,10 @@ namespace Academy
         public override string ToString()
         {
             string learningDays = "";
-            for(int i=0; i< DayNames.Length;i++)
+            for (int i = 0; i < DayNames.Length; i++)
             {
-                if((days & (1 << i)) != 0)
-                    learningDays += DayNames[i];
+                learningDays += ((days & (1 << i)) == 0 ? "" : $"{DayNames[i]}, " );
+                //if ((days & (1 << i)) != 0) learningDays += DayNames[i] +", ";
             }
             return learningDays;
         }
