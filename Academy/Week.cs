@@ -21,7 +21,6 @@ namespace Academy
             for (int i = 0; i < DayNames.Length; i++)
             {
                 learningDays += ((days & (1 << i)) == 0 ? "" : $"{DayNames[i]}, " );
-                //if ((days & (1 << i)) != 0) learningDays += DayNames[i] +", ";
             }
             return learningDays;
         }
