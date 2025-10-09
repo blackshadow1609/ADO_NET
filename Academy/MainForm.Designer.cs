@@ -229,13 +229,13 @@
             // 
             // dataGridViewDirections
             // 
+            this.dataGridViewDirections.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewDirections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDirections.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewDirections.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewDirections.Location = new System.Drawing.Point(3, 47);
             this.dataGridViewDirections.Name = "dataGridViewDirections";
             this.dataGridViewDirections.RowHeadersWidth = 51;
             this.dataGridViewDirections.RowTemplate.Height = 24;
-            this.dataGridViewDirections.Size = new System.Drawing.Size(786, 389);
+            this.dataGridViewDirections.Size = new System.Drawing.Size(786, 345);
             this.dataGridViewDirections.TabIndex = 0;
             // 
             // tabPageDisciplines
