@@ -70,8 +70,8 @@ namespace DataSet
             GroupsRelatedData.Relations.Add
                 (
                     dsRelation_GroupsDirections,
-                    GroupsRelatedData.Tables[dsTable_Directions].Columns[dstDirections_col_direction_id],   //Parent field (Primary key)
-                    GroupsRelatedData.Tables[dsTable_Groups].Columns[dstGroups_col_direction]               //Child field (Foreig key)
+                    GroupsRelatedData.Tables[dsTable_Directions].Columns[dstDirections_col_direction_id],   
+                    GroupsRelatedData.Tables[dsTable_Groups].Columns[dstGroups_col_direction]               
                 );
 
             //4) Загружаем данные в таблицу:
