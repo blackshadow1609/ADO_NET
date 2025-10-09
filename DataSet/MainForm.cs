@@ -224,11 +224,17 @@ namespace DataSet
 
 		private void comboBoxDisciplinesForDirection_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            dataGridViewDisciplines.DataSource =
-                DisciplinesDirectionsRelation
-                .Tables["DisciplinesDirectionsRelation"]
-                .ParentRelations["Discipline"]
-                .ParentTable;
+            DataRow[] ddr =
+                DisciplinesDirectionsRelation.Tables["DisciplinesDirectionsRelation"]
+                .Select($"direction={comboBoxDisciplinesForDirection.SelectedValue}");
+
+            DataTable dtDisciplinesForDirections = DisciplinesDirectionsRelation.Tables["Disciplines"].Clone();
+            foreach (DataRow row in ddr)
+            {
+                DataRow discipline = DisciplinesDirectionsRelation.Tables["Disciplines"].Rows.Find(row["discipline"]);
+                dtDisciplinesForDirections.ImportRow(discipline);
+            }
+            dataGridViewDisciplines.DataSource = dtDisciplinesForDirections;
 		}
 	}
 }
