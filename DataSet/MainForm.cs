@@ -84,14 +84,6 @@ namespace DataSet
 				Console.WriteLine($"{row[dstDirections_col_direction_id]}\t{row[dstDirections_col_direction_name]}");
 			}
 			Console.WriteLine("\n=================================================\n");
-			//foreach (DataRow row in GroupsRelatedData.Tables[dsTable_Directions].ChildRelations)
-			//{
-			//	for (int i = 0; i < row.GetChildRows(dsRelation_GroupsDirections).Length; i++)
-			//	{
-			//		Console.Write($"{row[i]}\t");
-			//	}
-			//	Console.WriteLine();
-			//}
 			
 			DataRow[] RPO = GroupsRelatedData.Tables[dsTable_Directions].Rows[0].GetChildRows(dsRelation_GroupsDirections);
             for (int i = 0; i < RPO.Length; i++)
