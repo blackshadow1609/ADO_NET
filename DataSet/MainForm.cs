@@ -187,7 +187,7 @@ namespace DataSet
             directionAdapter.Fill(DisciplinesDirectionsRelation.Tables[dsTable_Directions]);
             DDRAdapter.Fill(DisciplinesDirectionsRelation.Tables[dsTable_DDR]);
 
-            //------------------------------------------------------------------
+            //------------------------------------------------------------------//
 
             dataGridViewDisciplines.DataSource = DisciplinesDirectionsRelation.Tables[dsTable_Disciplines];
             comboBoxDisciplinesForDirection.DataSource = DisciplinesDirectionsRelation.Tables[dsTable_Directions];
@@ -224,17 +224,32 @@ namespace DataSet
 
 		private void comboBoxDisciplinesForDirection_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            DataRow[] ddr =
-                DisciplinesDirectionsRelation.Tables["DisciplinesDirectionsRelation"]
-                .Select($"direction={comboBoxDisciplinesForDirection.SelectedValue}");
+            //DataRow[] ddr =
+            //    DisciplinesDirectionsRelation.Tables["DisciplinesDirectionsRelation"]
+            //    .Select($"direction={comboBoxDisciplinesForDirection.SelectedValue}");
 
-            DataTable dtDisciplinesForDirections = DisciplinesDirectionsRelation.Tables["Disciplines"].Clone();
-            foreach (DataRow row in ddr)
-            {
-                DataRow discipline = DisciplinesDirectionsRelation.Tables["Disciplines"].Rows.Find(row["discipline"]);
-                dtDisciplinesForDirections.ImportRow(discipline);
-            }
-            dataGridViewDisciplines.DataSource = dtDisciplinesForDirections;
-		}
+            //DataTable dtDisciplinesForDirections = DisciplinesDirectionsRelation.Tables["Disciplines"].Clone();
+            //foreach (DataRow row in ddr)
+            //{
+            //    DataRow discipline = DisciplinesDirectionsRelation.Tables["Disciplines"].Rows.Find(row["discipline"]);
+            //    dtDisciplinesForDirections.ImportRow(discipline);
+            //}
+            //dataGridViewDisciplines.DataSource = dtDisciplinesForDirections;
+
+            //------------------------------------------------------------------//
+
+            DataRow[] ddr = DisciplinesDirectionsRelation.Tables["DisciplinesDirectionsRelation"]       //последний рабочий
+                .Select($"direction={comboBoxDisciplinesForDirection.SelectedValue}");
+            DataTable dtDisciplines = DisciplinesDirectionsRelation.Tables["Disciplines"].Clone();
+
+            object[] discipline_ids = ddr.Select(row => row["discipline"]).Distinct().ToArray();
+            string filter = $"discipline_id IN ({string.Join(",", discipline_ids)})";
+            dataGridViewDisciplines.DataSource =
+                DisciplinesDirectionsRelation.Tables["Disciplines"].Select(filter).CopyToDataTable();
+
+            //------------------------------------------------------------------//
+
+
+        }
 	}
 }
