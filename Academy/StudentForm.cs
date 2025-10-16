@@ -33,10 +33,18 @@ namespace Academy
 			Student.Phone = textBoxPhone.Text;
 			Student.Group = Convert.ToInt32(comboBoxGroup.SelectedValue);
 		}
-
 		private void buttonOK_Click(object sender, EventArgs e)
 		{
-
+			Student = new Student
+				(
+					textBoxLastName.Text,
+					textBoxFirstName.Text,
+					textBoxMiddleName.Text,
+					dateTimePickerBirthDate.Text,
+					textBoxEmail.Text,
+					textBoxPhone.Text,
+                    Convert.ToInt32(comboBoxGroup.SelectedValue)
+                );
 		}
 	}
 }

@@ -231,6 +231,7 @@ namespace Academy
             DialogResult result = student.ShowDialog();
             if (result == DialogResult.OK)
             {
+
                 //TODO: Делаем INSERT в базу;
                 Insert
                     (
