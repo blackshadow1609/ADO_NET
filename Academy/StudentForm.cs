@@ -26,9 +26,8 @@ namespace Academy
 
 			InitForm();
         }
-		public StudentForm(DataRow row) : this()
+		public StudentForm(int stud_id) : this()
 		{
-			int stud_id = Convert.ToInt32(row[0]);
 			DataTable student = connector.Select("*", "Students", $"stud_id={stud_id}");
 
 			textBoxLastName.Text = student.Rows[0][1].ToString();

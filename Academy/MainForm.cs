@@ -17,6 +17,7 @@ namespace Academy
     {
         string connectionString = "Data Source=DESKTOP-I644S2M\\SQLEXPRESS;Initial Catalog=PD_321_HW;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;";
         SqlConnection connection;
+        Connector connector;
         Dictionary<string, int> d_groupDirection;
         Dictionary<string, int> d_studentsGroup;
 
@@ -57,6 +58,9 @@ namespace Academy
             connectionString = ConfigurationManager.ConnectionStrings["PD_321_HW"].ConnectionString;
 			Console.WriteLine(connectionString);
             connection = new SqlConnection(connectionString);
+            connector = new Connector();
+            //
+            //
             Console.WriteLine(this.Name);
             Console.WriteLine(tabControl.TabCount);
 
@@ -233,8 +237,7 @@ namespace Academy
             DialogResult result = student.ShowDialog();
             if (result == DialogResult.OK)
             {
-
-                //TODO: Делаем INSERT в базу;
+                connector.
                 Insert
                     (
                     "Students",
@@ -246,12 +249,26 @@ namespace Academy
 
 		private void dataGridViewStudents_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
-            int i = dataGridViewStudents.SelectedRows[0].Index;
-			//Console.WriteLine(row.Index);
-            //Console.WriteLine((dataGridViewStudents.DataSource as DataTable).Rows[i][1]);
-            DataRow row = (dataGridViewStudents.DataSource as DataTable).Rows[i];
-            StudentForm form = new StudentForm(row);
+            int i = Convert.ToInt32(dataGridViewStudents.SelectedRows[0].Cells[0].Value);
+            StudentForm form = new StudentForm(i);
             DialogResult result = form.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                connector.Update
+                    (
+                    "Students",
+                    $@"
+                        last_name=N'{form.Student.LastName}',
+                        first_name=N'{form.Student.FirstName}',
+                        middle_name=N'{form.Student.MiddleName}',
+                        birth_date='{form.Student.BirthDate}',
+                        email=N'{form.Student.Email}',
+                        phone=N'{form.Student.Phone}',
+                        [group]={form.Student.Group}
+                    ",
+                    $"stud_id={i}"
+                    );
+            }
         }
 	}
 }
