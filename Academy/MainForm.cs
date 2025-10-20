@@ -86,7 +86,7 @@ namespace Academy
         {
             string tableName = tabControl.TabPages[i].Name.Remove(0, "tabPage".Length);
             DataGridView dataGridView = this.Controls.Find($"dataGridView{tableName}", true)[0] as DataGridView;
-            dataGridView.DataSource = Select(queries[i].Fields, queries[i].Tables, queries[i].Condition);
+            dataGridView.DataSource = connector.Select(queries[i].Fields, queries[i].Tables, queries[i].Condition);
 
             if (i == 1) ConvertLearningDays();
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -96,38 +96,38 @@ namespace Academy
         {
 
         }
-        DataTable Select(string fields, string tables, string condition = "")
-        {
-            DataTable table = new DataTable();
-            string cmd = $@"SELECT {fields} FROM {tables}";
-            if (!string.IsNullOrWhiteSpace(condition))
-                cmd += $" WHERE {condition}";
-            cmd += ";";
+        //DataTable Select(string fields, string tables, string condition = "")
+        //{
+        //    DataTable table = new DataTable();
+        //    string cmd = $@"SELECT {fields} FROM {tables}";
+        //    if (!string.IsNullOrWhiteSpace(condition))
+        //        cmd += $" WHERE {condition}";
+        //    cmd += ";";
 
-            SqlCommand command = new SqlCommand(cmd, connection);
-            connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-            for (int i = 0; i < reader.FieldCount; i++)
-                table.Columns.Add(reader.GetName(i));
-            while (reader.Read())
-            {
-                DataRow row = table.NewRow();
-                for (int i = 0; i < reader.FieldCount; i++) row[i] = reader[i];
-                table.Rows.Add(row);
-            }
-            reader.Close();
-            connection.Close();
+        //    SqlCommand command = new SqlCommand(cmd, connection);
+        //    connection.Open();
+        //    SqlDataReader reader = command.ExecuteReader();
+        //    for (int i = 0; i < reader.FieldCount; i++)
+        //        table.Columns.Add(reader.GetName(i));
+        //    while (reader.Read())
+        //    {
+        //        DataRow row = table.NewRow();
+        //        for (int i = 0; i < reader.FieldCount; i++) row[i] = reader[i];
+        //        table.Rows.Add(row);
+        //    }
+        //    reader.Close();
+        //    connection.Close();
 
-            return table;
-        }
-        void Insert(string table, string fields, string values)
-        {
-            string cmd = $"INSERT {table}({fields}) VALUES ({values})";
-            SqlCommand command = new SqlCommand(cmd, connection);
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-        }
+        //    return table;
+        //}
+        //void Insert(string table, string fields, string values)
+        //{
+        //    string cmd = $"INSERT {table}({fields}) VALUES ({values})";
+        //    SqlCommand command = new SqlCommand(cmd, connection);
+        //    connection.Open();
+        //    command.ExecuteNonQuery();
+        //    connection.Close();
+        //}
 
         void ConvertLearningDays()
         {
@@ -165,7 +165,7 @@ namespace Academy
             string condition = "direction=direction_id";
             if (comboBoxGroupsDirection.SelectedItem.ToString() != "Все")
                 condition += $" AND direction={d_groupDirection[comboBoxGroupsDirection.SelectedItem.ToString()]}";
-            dataGridViewGroups.DataSource = Select
+            dataGridViewGroups.DataSource = connector.Select
                 (
                 "group_id, group_name, direction",
                 "Groups, Directions",
@@ -201,7 +201,7 @@ namespace Academy
             comboBoxStudentsGroup.Items.Clear();
             comboBoxStudentsGroup.Items.AddRange(LoadDataToDictionary("*", "Groups", condition).Keys.ToArray());
 
-            dataGridViewStudents.DataSource = Select
+            dataGridViewStudents.DataSource = connector.Select
                 (
                     queries[0].Fields,
                     queries[0].Tables,
@@ -220,7 +220,7 @@ namespace Academy
                 comboBoxStudentsDirection.SelectedItem.ToString() == "Все" ? "" :
                 $"direction ={d_groupDirection[comboBoxStudentsDirection.SelectedItem.ToString()]}";
 
-            dataGridViewStudents.DataSource = Select
+            dataGridViewStudents.DataSource = connector.Select
             (
                 queries[0].Fields,
                 queries[0].Tables,
@@ -244,6 +244,8 @@ namespace Academy
                     "last_name, first_name, middle_name, birth_date, email, phone, [group]",
                     student.Student.ToString()
                     );
+                int id = Convert.ToInt32(connector.Scalar("SELECT MAX(stud_id) FROM Students"));
+                connector.UploadPhoto(student.Student.SerializePhoto(), id, "photo", "Students");
             }
 		}
 		private void dataGridViewStudents_MouseDoubleClick(object sender, MouseEventArgs e)
