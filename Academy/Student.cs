@@ -30,7 +30,6 @@ namespace Academy
 			Phone = phone;
 			Group = group;
 			Photo = photo;
-			//Photo = SerializePhoto(photo);
 		}
 		public byte[] SerializePhoto()
 		{
