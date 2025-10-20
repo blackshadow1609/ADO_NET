@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Academy
 {
@@ -42,7 +44,16 @@ namespace Academy
 			comboBoxGroup.SelectedValue = student.Rows[0][8].ToString();
 			labelID.Visible = true;
 			labelID.Text = $"ID: {student.Rows[0][0].ToString()}";
-        }
+
+			//object photo_obj = student.Rows[0][7];
+			//Console.WriteLine(photo_obj.ToString());
+			//BinaryFormatter bf = new BinaryFormatter();
+			//MemoryStream ms = new MemoryStream(photo_obj as byte[]);
+			//bf.Serialize(ms, photo_obj);
+			//pictureBoxPhoto.Image = Image.FromStream(ms, true, true);
+			pictureBoxPhoto.Image = connector.DownloadPhoto(stud_id, "Students", "photo");
+
+		}
 		void InitForm()
 		{
             textBoxLastName.Text = "Леонтьева";
@@ -75,14 +86,14 @@ namespace Academy
                     Convert.ToInt32(comboBoxGroup.SelectedValue),
 					pictureBoxPhoto.Image
                 );
-		}
+        }
 
 		private void buttonBrowsPhoto_Click(object sender, EventArgs e)
 		{
 			OpenFileDialog dialog = new OpenFileDialog();
-			dialog.Filter = 
-				"JPG files (*.jpg) | *.jpg | PNG files (*.png) | *.png | All image files | *.png; *.jpg | All files (*.*) | *.*";
-			if (dialog.ShowDialog() == DialogResult.OK)
+            dialog.Filter =
+					"JPG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|All image files (*.png;*.jpg)|*.png;*.jpg|All files (*.*)|*.*";
+            if (dialog.ShowDialog() == DialogResult.OK)
 			{ 
 				pictureBoxPhoto.Image = Image.FromFile (dialog.FileName);
 			}
