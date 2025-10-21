@@ -28,27 +28,87 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.labelGroup = new System.Windows.Forms.Label();
+            this.comboBoxGroup = new System.Windows.Forms.ComboBox();
+            this.buttonBrowsPhoto = new System.Windows.Forms.Button();
+            this.buttonOK = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.labelID = new System.Windows.Forms.Label();
             this.labelLastName = new System.Windows.Forms.Label();
             this.labelFirstName = new System.Windows.Forms.Label();
             this.labelMiddleName = new System.Windows.Forms.Label();
             this.labelBirthDate = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelPhone = new System.Windows.Forms.Label();
-            this.labelGroup = new System.Windows.Forms.Label();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.textBoxMiddleName = new System.Windows.Forms.TextBox();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.dateTimePickerBirthDate = new System.Windows.Forms.DateTimePicker();
-            this.comboBoxGroup = new System.Windows.Forms.ComboBox();
             this.pictureBoxPhoto = new System.Windows.Forms.PictureBox();
-            this.buttonBrowsPhoto = new System.Windows.Forms.Button();
-            this.buttonOK = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.labelID = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).BeginInit();
             this.SuspendLayout();
+            // 
+            // labelGroup
+            // 
+            this.labelGroup.AutoSize = true;
+            this.labelGroup.Location = new System.Drawing.Point(62, 317);
+            this.labelGroup.Name = "labelGroup";
+            this.labelGroup.Size = new System.Drawing.Size(57, 16);
+            this.labelGroup.TabIndex = 6;
+            this.labelGroup.Text = "Группа:";
+            // 
+            // comboBoxGroup
+            // 
+            this.comboBoxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGroup.FormattingEnabled = true;
+            this.comboBoxGroup.Location = new System.Drawing.Point(144, 313);
+            this.comboBoxGroup.Name = "comboBoxGroup";
+            this.comboBoxGroup.Size = new System.Drawing.Size(238, 24);
+            this.comboBoxGroup.TabIndex = 15;
+            // 
+            // buttonBrowsPhoto
+            // 
+            this.buttonBrowsPhoto.Location = new System.Drawing.Point(536, 262);
+            this.buttonBrowsPhoto.Name = "buttonBrowsPhoto";
+            this.buttonBrowsPhoto.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowsPhoto.TabIndex = 17;
+            this.buttonBrowsPhoto.Text = "Обзор...";
+            this.buttonBrowsPhoto.UseVisualStyleBackColor = true;
+            this.buttonBrowsPhoto.Click += new System.EventHandler(this.buttonBrowsPhoto_Click);
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonOK.Location = new System.Drawing.Point(429, 314);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(75, 23);
+            this.buttonOK.TabIndex = 18;
+            this.buttonOK.Text = "OK";
+            this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancel.Location = new System.Drawing.Point(536, 314);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 19;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            // 
+            // labelID
+            // 
+            this.labelID.AutoSize = true;
+            this.labelID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelID.Location = new System.Drawing.Point(12, 352);
+            this.labelID.Name = "labelID";
+            this.labelID.Size = new System.Drawing.Size(33, 25);
+            this.labelID.TabIndex = 20;
+            this.labelID.Text = "ID";
+            this.labelID.Visible = false;
             // 
             // labelLastName
             // 
@@ -104,15 +164,6 @@
             this.labelPhone.TabIndex = 5;
             this.labelPhone.Text = "Phone:";
             // 
-            // labelGroup
-            // 
-            this.labelGroup.AutoSize = true;
-            this.labelGroup.Location = new System.Drawing.Point(62, 317);
-            this.labelGroup.Name = "labelGroup";
-            this.labelGroup.Size = new System.Drawing.Size(57, 16);
-            this.labelGroup.TabIndex = 6;
-            this.labelGroup.Text = "Группа:";
-            // 
             // textBoxLastName
             // 
             this.textBoxLastName.Location = new System.Drawing.Point(144, 13);
@@ -156,15 +207,6 @@
             this.dateTimePickerBirthDate.Size = new System.Drawing.Size(238, 22);
             this.dateTimePickerBirthDate.TabIndex = 14;
             // 
-            // comboBoxGroup
-            // 
-            this.comboBoxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxGroup.FormattingEnabled = true;
-            this.comboBoxGroup.Location = new System.Drawing.Point(144, 313);
-            this.comboBoxGroup.Name = "comboBoxGroup";
-            this.comboBoxGroup.Size = new System.Drawing.Size(238, 24);
-            this.comboBoxGroup.TabIndex = 15;
-            // 
             // pictureBoxPhoto
             // 
             this.pictureBoxPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -174,48 +216,6 @@
             this.pictureBoxPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxPhoto.TabIndex = 16;
             this.pictureBoxPhoto.TabStop = false;
-            // 
-            // buttonBrowsPhoto
-            // 
-            this.buttonBrowsPhoto.Location = new System.Drawing.Point(536, 262);
-            this.buttonBrowsPhoto.Name = "buttonBrowsPhoto";
-            this.buttonBrowsPhoto.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowsPhoto.TabIndex = 17;
-            this.buttonBrowsPhoto.Text = "Обзор...";
-            this.buttonBrowsPhoto.UseVisualStyleBackColor = true;
-            this.buttonBrowsPhoto.Click += new System.EventHandler(this.buttonBrowsPhoto_Click);
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOK.Location = new System.Drawing.Point(429, 314);
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(75, 23);
-            this.buttonOK.TabIndex = 18;
-            this.buttonOK.Text = "OK";
-            this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(536, 314);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 19;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            // 
-            // labelID
-            // 
-            this.labelID.AutoSize = true;
-            this.labelID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelID.Location = new System.Drawing.Point(12, 352);
-            this.labelID.Name = "labelID";
-            this.labelID.Size = new System.Drawing.Size(33, 25);
-            this.labelID.TabIndex = 20;
-            this.labelID.Text = "ID";
-            this.labelID.Visible = false;
             // 
             // StudentForm
             // 
@@ -251,25 +251,24 @@
 		}
 
 		#endregion
-
+		private System.Windows.Forms.Label labelGroup;
+		private System.Windows.Forms.ComboBox comboBoxGroup;
+		private System.Windows.Forms.Button buttonBrowsPhoto;
+		private System.Windows.Forms.Button buttonOK;
+		private System.Windows.Forms.Button buttonCancel;
+		private System.Windows.Forms.Label labelID;
 		private System.Windows.Forms.Label labelLastName;
 		private System.Windows.Forms.Label labelFirstName;
 		private System.Windows.Forms.Label labelMiddleName;
 		private System.Windows.Forms.Label labelBirthDate;
 		private System.Windows.Forms.Label labelEmail;
 		private System.Windows.Forms.Label labelPhone;
-		private System.Windows.Forms.Label labelGroup;
 		private System.Windows.Forms.TextBox textBoxLastName;
 		private System.Windows.Forms.TextBox textBoxFirstName;
 		private System.Windows.Forms.TextBox textBoxMiddleName;
 		private System.Windows.Forms.TextBox textBoxEmail;
 		private System.Windows.Forms.TextBox textBoxPhone;
 		private System.Windows.Forms.DateTimePicker dateTimePickerBirthDate;
-		private System.Windows.Forms.ComboBox comboBoxGroup;
 		private System.Windows.Forms.PictureBox pictureBoxPhoto;
-		private System.Windows.Forms.Button buttonBrowsPhoto;
-		private System.Windows.Forms.Button buttonOK;
-		private System.Windows.Forms.Button buttonCancel;
-		private System.Windows.Forms.Label labelID;
 	}
 }
