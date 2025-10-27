@@ -59,8 +59,7 @@ namespace Academy
 			Console.WriteLine(connectionString);
             connection = new SqlConnection(connectionString);
             connector = new Connector();
-            //
-            //
+            
             Console.WriteLine(this.Name);
             Console.WriteLine(tabControl.TabCount);
 

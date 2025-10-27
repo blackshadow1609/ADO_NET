@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academy", "Academy\Academy.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSet", "DataSet\DataSet.csproj", "{FDEAD9A0-EE34-41EE-9E1F-6B69D9A21432}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQ", "LINQ\LINQ.csproj", "{691AD4F8-08D1-481B-83B2-D799581054E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FDEAD9A0-EE34-41EE-9E1F-6B69D9A21432}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDEAD9A0-EE34-41EE-9E1F-6B69D9A21432}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDEAD9A0-EE34-41EE-9E1F-6B69D9A21432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{691AD4F8-08D1-481B-83B2-D799581054E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{691AD4F8-08D1-481B-83B2-D799581054E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{691AD4F8-08D1-481B-83B2-D799581054E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{691AD4F8-08D1-481B-83B2-D799581054E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
