@@ -45,19 +45,14 @@ namespace Academy
 			labelID.Visible = true;
 			labelID.Text = $"ID: {student.Rows[0][0].ToString()}";
 
-			//object photo_obj = student.Rows[0][7];
-			//Console.WriteLine(photo_obj.ToString());
-			//BinaryFormatter bf = new BinaryFormatter();
-			//MemoryStream ms = new MemoryStream(photo_obj as byte[]);
-			//bf.Serialize(ms, photo_obj);
-			//pictureBoxPhoto.Image = Image.FromStream(ms, true, true);
+		
 			try
 			{
 				pictureBoxPhoto.Image = connector.DownloadPhoto(stud_id, "Students", "photo");
 			}
 			catch (Exception ex)
 			{
-				//MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				
 			}
 
 		}

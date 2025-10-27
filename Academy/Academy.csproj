@@ -47,7 +47,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseHumanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseHumanForm.Designer.cs">
+      <DependentUpon>BaseHumanForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Connector.cs" />
+    <Compile Include="DerivedStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DerivedStudentForm.Designer.cs">
+      <DependentUpon>DerivedStudentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Human.cs" />
     <Compile Include="HumanForm.cs">
       <SubType>UserControl</SubType>
@@ -72,6 +84,12 @@
       <DependentUpon>StudentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Week.cs" />
+    <EmbeddedResource Include="BaseHumanForm.resx">
+      <DependentUpon>BaseHumanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DerivedStudentForm.resx">
+      <DependentUpon>DerivedStudentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HumanForm.resx">
       <DependentUpon>HumanForm.cs</DependentUpon>
     </EmbeddedResource>

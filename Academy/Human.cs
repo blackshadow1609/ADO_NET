@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace Academy
 {
-	internal class Human
+    internal class Human
 	{
         public string LastName { get; set; }
         public string FirstName { get; set; }

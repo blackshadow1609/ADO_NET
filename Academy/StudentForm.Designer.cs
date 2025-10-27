@@ -53,7 +53,7 @@
             // labelGroup
             // 
             this.labelGroup.AutoSize = true;
-            this.labelGroup.Location = new System.Drawing.Point(62, 317);
+            this.labelGroup.Location = new System.Drawing.Point(62, 319);
             this.labelGroup.Name = "labelGroup";
             this.labelGroup.Size = new System.Drawing.Size(57, 16);
             this.labelGroup.TabIndex = 6;
@@ -63,16 +63,16 @@
             // 
             this.comboBoxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGroup.FormattingEnabled = true;
-            this.comboBoxGroup.Location = new System.Drawing.Point(144, 313);
+            this.comboBoxGroup.Location = new System.Drawing.Point(144, 315);
             this.comboBoxGroup.Name = "comboBoxGroup";
             this.comboBoxGroup.Size = new System.Drawing.Size(238, 24);
             this.comboBoxGroup.TabIndex = 15;
             // 
             // buttonBrowsPhoto
             // 
-            this.buttonBrowsPhoto.Location = new System.Drawing.Point(536, 262);
+            this.buttonBrowsPhoto.Location = new System.Drawing.Point(602, 343);
             this.buttonBrowsPhoto.Name = "buttonBrowsPhoto";
-            this.buttonBrowsPhoto.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowsPhoto.Size = new System.Drawing.Size(80, 30);
             this.buttonBrowsPhoto.TabIndex = 17;
             this.buttonBrowsPhoto.Text = "Обзор...";
             this.buttonBrowsPhoto.UseVisualStyleBackColor = true;
@@ -81,9 +81,9 @@
             // buttonOK
             // 
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOK.Location = new System.Drawing.Point(429, 314);
+            this.buttonOK.Location = new System.Drawing.Point(429, 387);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(75, 23);
+            this.buttonOK.Size = new System.Drawing.Size(80, 30);
             this.buttonOK.TabIndex = 18;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
@@ -92,9 +92,9 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(536, 314);
+            this.buttonCancel.Location = new System.Drawing.Point(602, 387);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(80, 30);
             this.buttonCancel.TabIndex = 19;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -103,7 +103,7 @@
             // 
             this.labelID.AutoSize = true;
             this.labelID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelID.Location = new System.Drawing.Point(12, 352);
+            this.labelID.Location = new System.Drawing.Point(21, 390);
             this.labelID.Name = "labelID";
             this.labelID.Size = new System.Drawing.Size(33, 25);
             this.labelID.TabIndex = 20;
@@ -210,9 +210,9 @@
             // pictureBoxPhoto
             // 
             this.pictureBoxPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxPhoto.Location = new System.Drawing.Point(429, 16);
+            this.pictureBoxPhoto.Location = new System.Drawing.Point(429, 13);
             this.pictureBoxPhoto.Name = "pictureBoxPhoto";
-            this.pictureBoxPhoto.Size = new System.Drawing.Size(182, 219);
+            this.pictureBoxPhoto.Size = new System.Drawing.Size(253, 324);
             this.pictureBoxPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxPhoto.TabIndex = 16;
             this.pictureBoxPhoto.TabStop = false;
@@ -221,7 +221,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 386);
+            this.ClientSize = new System.Drawing.Size(707, 453);
             this.Controls.Add(this.labelID);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
