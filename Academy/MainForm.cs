@@ -96,38 +96,6 @@ namespace Academy
         {
 
         }
-        //DataTable Select(string fields, string tables, string condition = "")
-        //{
-        //    DataTable table = new DataTable();
-        //    string cmd = $@"SELECT {fields} FROM {tables}";
-        //    if (!string.IsNullOrWhiteSpace(condition))
-        //        cmd += $" WHERE {condition}";
-        //    cmd += ";";
-
-        //    SqlCommand command = new SqlCommand(cmd, connection);
-        //    connection.Open();
-        //    SqlDataReader reader = command.ExecuteReader();
-        //    for (int i = 0; i < reader.FieldCount; i++)
-        //        table.Columns.Add(reader.GetName(i));
-        //    while (reader.Read())
-        //    {
-        //        DataRow row = table.NewRow();
-        //        for (int i = 0; i < reader.FieldCount; i++) row[i] = reader[i];
-        //        table.Rows.Add(row);
-        //    }
-        //    reader.Close();
-        //    connection.Close();
-
-        //    return table;
-        //}
-        //void Insert(string table, string fields, string values)
-        //{
-        //    string cmd = $"INSERT {table}({fields}) VALUES ({values})";
-        //    SqlCommand command = new SqlCommand(cmd, connection);
-        //    connection.Open();
-        //    command.ExecuteNonQuery();
-        //    connection.Close();
-        //}
 
         void ConvertLearningDays()
         {
@@ -138,7 +106,6 @@ namespace Academy
             }
         }
 
-        //ComboBoxGroups-------------------------------------------------
         Dictionary<string, int> LoadDataToDictionary(string fields, string tables, string condition = "")
         {
             Dictionary<string, int> dictionary = new Dictionary<string, int>();
@@ -159,7 +126,6 @@ namespace Academy
             return dictionary;
         }
 
-        //Обработчик------comboBox---------------------------------------
         private void comboBoxGroupsDirection_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             string condition = "direction=direction_id";
@@ -173,12 +139,9 @@ namespace Academy
                 );
         }
 
-        //Отображение консоли---------------------------------------------
-
         [DllImport("kernel32.dll")]
         static extern void AllocConsole();
 
-        //Обработчик----tabControl----------------------------------------
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadTab((sender as TabControl).SelectedIndex);
@@ -197,7 +160,6 @@ namespace Academy
                 condition = $"direction={directionId}";
             }
 
-            //загрузка------групп----------------------------------------------------------------
             comboBoxStudentsGroup.Items.Clear();
             comboBoxStudentsGroup.Items.AddRange(LoadDataToDictionary("*", "Groups", condition).Keys.ToArray());
 
@@ -251,19 +213,7 @@ namespace Academy
 		private void dataGridViewStudents_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
             int i = Convert.ToInt32(dataGridViewStudents.SelectedRows[0].Cells[0].Value);
-            //StudentForm student = new StudentForm(i);
-            //DialogResult result = student.ShowDialog();
-            //if(result == DialogResult.OK)
-            //{
-            //    connector.Update
-            //        (
-            //        "Students",
-            //        student.Student.ToStringUpdate(),
-            //        $"stud_id={i}"
-            //        );
-            //    connector.UploadPhoto(student.Student.SerializePhoto(), i, "photo", "Students");
-            //    comboBoxStudentsGroup_SelectedIndexChanged(null, null);
-            //}
+         
             DerivedStudentForm student = new DerivedStudentForm(i);
             DialogResult result = student.ShowDialog();
             if (result == DialogResult.OK)
