@@ -67,7 +67,7 @@
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 424);
+            this.statusStrip.Location = new System.Drawing.Point(0, 422);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(800, 26);
             this.statusStrip.TabIndex = 0;
@@ -90,7 +90,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(800, 424);
+            this.tabControl.Size = new System.Drawing.Size(800, 422);
             this.tabControl.TabIndex = 1;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
@@ -105,7 +105,7 @@
             this.tabPageStudents.Location = new System.Drawing.Point(4, 25);
             this.tabPageStudents.Name = "tabPageStudents";
             this.tabPageStudents.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageStudents.Size = new System.Drawing.Size(792, 395);
+            this.tabPageStudents.Size = new System.Drawing.Size(792, 393);
             this.tabPageStudents.TabIndex = 0;
             this.tabPageStudents.Text = "Students";
             this.tabPageStudents.UseVisualStyleBackColor = true;
@@ -171,7 +171,7 @@
             this.dataGridViewStudents.RowHeadersWidth = 51;
             this.dataGridViewStudents.RowTemplate.Height = 24;
             this.dataGridViewStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewStudents.Size = new System.Drawing.Size(786, 345);
+            this.dataGridViewStudents.Size = new System.Drawing.Size(786, 343);
             this.dataGridViewStudents.TabIndex = 0;
             this.dataGridViewStudents.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewStudents_MouseDoubleClick);
             // 
@@ -294,7 +294,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 448);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.statusStrip);
             this.Name = "MainForm";
