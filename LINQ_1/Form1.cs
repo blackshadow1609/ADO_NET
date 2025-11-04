@@ -34,6 +34,12 @@ namespace LINQ_1
                 Console.Write($"{i}\t");
             }
             Console.WriteLine();
+
+            //------------------//
+            //Immediate queries:
+            Console.WriteLine((from i in arr select i).Count());
+            Console.WriteLine((from i in arr select i).Sum());
+            //List<int> i_list = (from i in arr select i).ToList();
         }
 
         [DllImport("kernel32.dll")]
